@@ -33,17 +33,35 @@ changes make the checkout fail rather than being discarded.
 ## compound-engineering
 
 The [Compound Engineering](https://github.com/everyinc/compound-engineering-plugin)
-suite by Every Inc., MIT licensed. Imported verbatim from upstream
-commit `00d0a5bbf1300b2138b65ce724b325dd4dff77ba` (2026-10-27): 36
-skills that structure agent work as a loop — brainstorm, plan, build,
-review, capture learnings.
+suite by Every Inc., MIT licensed, imported verbatim: skills that
+structure agent work as a loop — brainstorm, plan, build, review,
+capture learnings. The pinned upstream revision, import date and skill
+count are recorded in [`upstream.lock`](upstream.lock).
 
 The `compound-engineering` profile lists the whole suite. Enable it in a
 workspace with `beskar repo enable compound-engineering`.
 
 Upstream skills reference plugin machinery (slash commands, subagents)
 that a plain Beskar library does not install; the workflow guidance in
-each `SKILL.md` stands on its own. Re-imports should stay byte-identical
-to upstream to keep sync baselines comparable.
+each `SKILL.md` stands on its own.
 
 License text: [`LICENSES/compound-engineering-plugin.txt`](LICENSES/compound-engineering-plugin.txt).
+
+## Syncing with upstream
+
+`scripts/sync-compound-engineering.sh` mirrors the suite from upstream
+into this repository: it validates every skill against Beskar's rules
+(name grammar, `SKILL.md`, no symlinks), replaces `skills/` and the
+license verbatim, regenerates the `compound-engineering` profile, writes
+`upstream.lock`, and commits. Run it in a working copy of this
+repository (the Beskar-managed clone works fine), then push:
+
+```sh
+scripts/sync-compound-engineering.sh --push   # default ref: main
+```
+
+The script prints the exact `beskar remote` commands each machine needs
+afterwards; new upstream skills must be tracked explicitly, dropped
+ones released from the profile, and `beskar remote sync ventrion`
+picks the result up. This is a repository script on purpose — Beskar
+itself stays pull-only.
