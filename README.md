@@ -14,6 +14,22 @@ Layout follows the Beskar collection format (`docs/COLLECTIONS.md` in
 - `profiles/` — named setups that import on every sync
 - `LICENSES/` — third-party license texts (ignored by Beskar)
 
+## Editing this collection
+
+This repository has no separate authoring checkout. Work in the clone
+Beskar manages, commit, and push:
+
+```sh
+beskar remote where ventrion   # prints the clone path
+cd "$(beskar remote where ventrion)" && git switch main
+# edit, then:
+git commit -am "..." && git push origin main
+beskar remote sync ventrion    # on every machine, including this one
+```
+
+Sync fetches and detaches the clone at the pushed commit; uncommitted
+changes make the checkout fail rather than being discarded.
+
 ## compound-engineering
 
 The [Compound Engineering](https://github.com/everyinc/compound-engineering-plugin)
