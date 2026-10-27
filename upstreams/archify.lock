@@ -1,0 +1,7 @@
+# Managed by scripts/sync-suite.sh; do not edit.
+suite=archify
+url=https://github.com/tt-a1i/archify
+ref=main
+commit=81c6be8d87090670c45d08a8f97f9d29c5af0bec
+date=2026-10-25
+skills=1
