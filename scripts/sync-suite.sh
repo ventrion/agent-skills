@@ -24,6 +24,7 @@ usage() { sed -n '2,16p' "$0"; }
 suite="$1"
 shift
 
+skills_path="skills"
 case "$suite" in
   compound-engineering)
     url_default="https://github.com/everyinc/compound-engineering-plugin"
@@ -50,6 +51,17 @@ case "$suite" in
       "The Superpowers suite by Jesse Vincent (obra), imported from"
       "github.com/obra/superpowers. An agentic skills framework and"
       "software development methodology that works."
+    )
+    ;;
+  archify)
+    url_default="https://github.com/tt-a1i/archify"
+    skills_path="archify"
+    license_dest="LICENSES/archify.txt"
+    header=(
+      "The Archify suite by tt-a1i, imported from"
+      "github.com/tt-a1i/archify. Diagrams and one-page explainers"
+      "as standalone HTML. Single-skill upstream: the skill directory"
+      "is the repository's archify/ folder."
     )
     ;;
   *)
@@ -101,13 +113,26 @@ git -c core.autocrlf=false clone --quiet --depth 1 --branch "$ref" "$url" "$tmp/
 commit="$(git -C "$tmp/up" rev-parse HEAD)"
 short="${commit:0:10}"
 date="$(git -C "$tmp/up" log -1 --format=%cs)"
-[ -d "$tmp/up/skills" ] || die "upstream has no skills/ directory"
+source_root="$tmp/up/$skills_path"
+entries=()
+if [ -f "$source_root/SKILL.md" ]; then
+  # Single-skill upstream: the configured path is the skill directory
+  # itself, and the directory name is the skill name.
+  entries=("$source_root")
+elif [ -d "$source_root" ]; then
+  shopt -s nullglob
+  for entry in "$source_root"/*; do
+    entries+=("$entry")
+  done
+else
+  die "upstream has no $skills_path/ directory"
+fi
 [ -f "$tmp/up/LICENSE" ] || die "upstream has no LICENSE"
 
 # Collect and validate upstream skills against Beskar's rules.
-shopt -s nullglob
+declare -A entry_of=()
 names=()
-for entry in "$tmp/up/skills"/*; do
+for entry in "${entries[@]}"; do
   if [ ! -d "$entry" ]; then
     say "warning: skipping non-directory $(basename "$entry")"
     continue
@@ -120,6 +145,7 @@ for entry in "$tmp/up/skills"/*; do
     die "upstream skill '$name' contains symlinks; Beskar rejects them"
   fi
   names+=("$name")
+  entry_of["$name"]="$entry"
 done
 [ "${#names[@]}" -gt 0 ] || die "upstream has no skills"
 names=($(printf '%s\n' "${names[@]}" | sort))
@@ -145,7 +171,7 @@ for name in $old; do
 done
 for name in "${names[@]}"; do
   rm -rf "skills/$name"
-  cp -a "$tmp/up/skills/$name" "skills/"
+  cp -a "${entry_of[$name]}" "skills/$name"
 done
 mkdir -p "$(dirname "$license_dest")"
 cp "$tmp/up/LICENSE" "$license_dest"

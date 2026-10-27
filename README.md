@@ -68,6 +68,18 @@ whole suite; enable it with `beskar repo enable superpowers`.
 
 License text: [`LICENSES/superpowers.txt`](LICENSES/superpowers.txt).
 
+## archify
+
+The [Archify](https://github.com/tt-a1i/archify) suite by tt-a1i,
+Apache-2.0 licensed, imported verbatim: turn any idea, plan, or
+codebase into a validated interactive diagram or one-page explainer as
+standalone HTML. A single-skill suite — upstream ships the skill as its
+own `archify/` directory, and the skill directory carries its own
+license and notice files. The `archify` profile lists it; enable with
+`beskar repo enable archify`.
+
+License text: [`LICENSES/archify.txt`](LICENSES/archify.txt).
+
 ## Syncing with upstream
 
 `scripts/sync-suite.sh SUITE` mirrors a suite from its upstream into
@@ -81,6 +93,7 @@ wrappers keep the common case short:
 ```sh
 scripts/sync-ponytail.sh --push               # default ref: main
 scripts/sync-superpowers.sh --push            # same, other suites
+scripts/sync-archify.sh --push
 scripts/sync-compound-engineering.sh --push
 ```
 
