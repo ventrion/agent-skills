@@ -1,0 +1,40 @@
+beskar 1
+# The Compound Engineering suite by Every Inc., imported from
+# github.com/everyinc/compound-engineering-plugin. The full loop:
+# brainstorm, plan, build, review, capture learnings.
+skill ce-babysit-pr
+skill ce-bakeoff
+skill ce-brainstorm
+skill ce-code-review
+skill ce-commit
+skill ce-commit-push-pr
+skill ce-compound
+skill ce-compound-refresh
+skill ce-debug
+skill ce-doc-review
+skill ce-dogfood
+skill ce-explain
+skill ce-handoff
+skill ce-ideate
+skill ce-noslop
+skill ce-optimize
+skill ce-plan
+skill ce-polish
+skill ce-pov
+skill ce-product-pulse
+skill ce-promote
+skill ce-proof
+skill ce-prototype
+skill ce-resolve-pr-feedback
+skill ce-retune
+skill ce-riffrec-feedback-analysis
+skill ce-setup
+skill ce-simplify-code
+skill ce-strategy
+skill ce-sweep
+skill ce-test-browser
+skill ce-test-xcode
+skill ce-work
+skill ce-worktree
+skill lfg
+skill wtf
