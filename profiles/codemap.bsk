@@ -1,0 +1,6 @@
+beskar 1
+# The Codemap suite by Xingyu Chen (Asixa), imported from
+# github.com/Asixa/codemap-skill. A code janitor for AI coding
+# agents: interactive architecture map plus per-module
+# code-quality audit.
+skill codemap

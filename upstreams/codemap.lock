@@ -1,0 +1,7 @@
+# Managed by scripts/sync-suite.sh; do not edit.
+suite=codemap
+url=https://github.com/Asixa/codemap-skill
+ref=main
+commit=93d1f3cc302b4c7dbd25809c73dbd691a964a98c
+date=2026-06-11
+skills=1
