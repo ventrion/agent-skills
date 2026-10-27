@@ -25,6 +25,7 @@ suite="$1"
 shift
 
 skills_path="skills"
+skill_name=""
 case "$suite" in
   compound-engineering)
     url_default="https://github.com/everyinc/compound-engineering-plugin"
@@ -62,6 +63,18 @@ case "$suite" in
       "github.com/tt-a1i/archify. Diagrams and one-page explainers"
       "as standalone HTML. Single-skill upstream: the skill directory"
       "is the repository's archify/ folder."
+    )
+    ;;
+  codemap)
+    url_default="https://github.com/Asixa/codemap-skill"
+    skills_path="."
+    skill_name="codemap"
+    license_dest="LICENSES/codemap-skill.txt"
+    header=(
+      "The Codemap suite by Xingyu Chen (Asixa), imported from"
+      "github.com/Asixa/codemap-skill. A code janitor for AI coding"
+      "agents: interactive architecture map plus per-module"
+      "code-quality audit."
     )
     ;;
   *)
@@ -115,10 +128,19 @@ short="${commit:0:10}"
 date="$(git -C "$tmp/up" log -1 --format=%cs)"
 source_root="$tmp/up/$skills_path"
 entries=()
-if [ -f "$source_root/SKILL.md" ]; then
+single_name=""
+if [ -n "$skill_name" ]; then
+  # Single-skill upstream whose directory name is not the skill name,
+  # for example the repository root itself (skills_path=".").
+  [ -f "$source_root/SKILL.md" ] \
+    || die "upstream $skills_path has no SKILL.md for skill $skill_name"
+  entries=("$source_root")
+  single_name="$skill_name"
+elif [ -f "$source_root/SKILL.md" ]; then
   # Single-skill upstream: the configured path is the skill directory
   # itself, and the directory name is the skill name.
   entries=("$source_root")
+  single_name="$(basename "$source_root")"
 elif [ -d "$source_root" ]; then
   shopt -s nullglob
   for entry in "$source_root"/*; do
@@ -137,11 +159,15 @@ for entry in "${entries[@]}"; do
     say "warning: skipping non-directory $(basename "$entry")"
     continue
   fi
-  name="$(basename "$entry")"
+  if [ -n "$single_name" ]; then
+    name="$single_name"
+  else
+    name="$(basename "$entry")"
+  fi
   [[ "$name" =~ ^[a-z0-9][a-z0-9_-]{0,63}$ ]] \
     || die "upstream skill name '$name' fails Beskar's name rules"
   [ -f "$entry/SKILL.md" ] || die "upstream skill '$name' has no SKILL.md"
-  if [ -n "$(find "$entry" -type l)" ]; then
+  if [ -n "$(find "$entry" -name .git -prune -o -type l -print)" ]; then
     die "upstream skill '$name' contains symlinks; Beskar rejects them"
   fi
   names+=("$name")
@@ -172,6 +198,8 @@ done
 for name in "${names[@]}"; do
   rm -rf "skills/$name"
   cp -a "${entry_of[$name]}" "skills/$name"
+  # Root-level single skills copy the clone's .git along; strip it.
+  rm -rf "skills/$name/.git"
 done
 mkdir -p "$(dirname "$license_dest")"
 cp "$tmp/up/LICENSE" "$license_dest"

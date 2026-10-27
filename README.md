@@ -80,6 +80,17 @@ license and notice files. The `archify` profile lists it; enable with
 
 License text: [`LICENSES/archify.txt`](LICENSES/archify.txt).
 
+## codemap
+
+The [Codemap](https://github.com/Asixa/codemap-skill) suite by Xingyu
+Chen (Asixa), MIT licensed, imported verbatim: a code janitor for AI
+coding agents — an interactive architecture map plus a per-module
+code-quality audit for any codebase. A single-skill suite whose skill
+directory is the repository root. The `codemap` profile lists it;
+enable with `beskar repo enable codemap`.
+
+License text: [`LICENSES/codemap-skill.txt`](LICENSES/codemap-skill.txt).
+
 ## Syncing with upstream
 
 `scripts/sync-suite.sh SUITE` mirrors a suite from its upstream into
@@ -94,6 +105,7 @@ wrappers keep the common case short:
 scripts/sync-ponytail.sh --push               # default ref: main
 scripts/sync-superpowers.sh --push            # same, other suites
 scripts/sync-archify.sh --push
+scripts/sync-codemap.sh --push
 scripts/sync-compound-engineering.sh --push
 ```
 
