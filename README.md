@@ -57,6 +57,17 @@ the whole suite; enable it with `beskar repo enable ponytail`.
 
 License text: [`LICENSES/ponytail.txt`](LICENSES/ponytail.txt).
 
+## superpowers
+
+The [Superpowers](https://github.com/obra/superpowers) suite by Jesse
+Vincent (obra), MIT licensed, imported verbatim: an agentic skills
+framework and software development methodology — brainstorming,
+writing and executing plans, test-driven development, systematic
+debugging, code review, and more. The `superpowers` profile lists the
+whole suite; enable it with `beskar repo enable superpowers`.
+
+License text: [`LICENSES/superpowers.txt`](LICENSES/superpowers.txt).
+
 ## Syncing with upstream
 
 `scripts/sync-suite.sh SUITE` mirrors a suite from its upstream into
@@ -69,7 +80,8 @@ wrappers keep the common case short:
 
 ```sh
 scripts/sync-ponytail.sh --push               # default ref: main
-scripts/sync-compound-engineering.sh --push   # same, other suite
+scripts/sync-superpowers.sh --push            # same, other suites
+scripts/sync-compound-engineering.sh --push
 ```
 
 Adding a suite means adding its skills, a `profiles/SUITE.bsk`, an

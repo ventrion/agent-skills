@@ -43,6 +43,15 @@ case "$suite" in
       "the best code is the code you never wrote."
     )
     ;;
+  superpowers)
+    url_default="https://github.com/obra/superpowers"
+    license_dest="LICENSES/superpowers.txt"
+    header=(
+      "The Superpowers suite by Jesse Vincent (obra), imported from"
+      "github.com/obra/superpowers. An agentic skills framework and"
+      "software development methodology that works."
+    )
+    ;;
   *)
     usage >&2
     die "unknown suite '$suite'"
