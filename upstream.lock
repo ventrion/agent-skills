@@ -1,0 +1,6 @@
+# Managed by scripts/sync-compound-engineering.sh; do not edit.
+url=https://github.com/everyinc/compound-engineering-plugin
+ref=main
+commit=00d0a5bbf1300b2138b65ce724b325dd4dff77ba
+date=2026-10-27
+skills=36
