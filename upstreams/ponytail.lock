@@ -1,0 +1,7 @@
+# Managed by scripts/sync-suite.sh; do not edit.
+suite=ponytail
+url=https://github.com/DietrichGebert/ponytail
+ref=main
+commit=09c434ab73ca43761c5d8b0c5d341926c2fba710
+date=2026-10-18
+skills=6
