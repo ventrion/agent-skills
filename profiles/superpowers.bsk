@@ -1,0 +1,19 @@
+beskar 1
+# The Superpowers suite by Jesse Vincent (obra), imported from
+# github.com/obra/superpowers. An agentic skills framework and
+# software development methodology that works.
+skill brainstorming
+skill diagnosing-superpowers
+skill dispatching-parallel-agents
+skill executing-plans
+skill finishing-a-development-branch
+skill receiving-code-review
+skill requesting-code-review
+skill subagent-driven-development
+skill systematic-debugging
+skill test-driven-development
+skill using-git-worktrees
+skill using-superpowers
+skill verification-before-completion
+skill writing-plans
+skill writing-skills

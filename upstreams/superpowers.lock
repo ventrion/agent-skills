@@ -1,0 +1,7 @@
+# Managed by scripts/sync-suite.sh; do not edit.
+suite=superpowers
+url=https://github.com/obra/superpowers
+ref=main
+commit=2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
+date=2026-10-21
+skills=15
